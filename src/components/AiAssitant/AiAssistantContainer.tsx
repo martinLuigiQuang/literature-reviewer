@@ -10,7 +10,6 @@ const getInstructions = (instructions: string, research: ResearchAbstract[]) => 
     JSON.stringify({ 
         instructions, 
         research,
-        rules: 'separate each new line in the response by "\n"',
     })
 );
 
@@ -35,7 +34,7 @@ export default function AiAssistantContainer(props: ComponentProps) {
     );
 
     const handleSendChatMessages = useCallback(
-        (instructions: string, selectedArticles: ResearchAbstract[]) => () => {
+        (instructions: string, selectedArticles: ResearchAbstract[], eraseInput: boolean = false) => () => {
             setMessages((prev) => ([
                 ...prev,
                 {
@@ -45,6 +44,9 @@ export default function AiAssistantContainer(props: ComponentProps) {
             ]));
             setChatModalOpen(true);
             enableAiResp(true);
+            if (eraseInput) {
+                setUserInstructions('');
+            }
         },
         [],
     );
@@ -125,7 +127,7 @@ export default function AiAssistantContainer(props: ComponentProps) {
                             </Button>
                         ))}
                     </div>
-                    <div className="ai-chat--inputs-control">
+                    <form className="ai-chat--inputs-control" onSubmit={(e) => { e.preventDefault(); }}>
                         <OutlinedInput
                             className="ai-chat--text-input"
                             type="text"
@@ -134,13 +136,14 @@ export default function AiAssistantContainer(props: ComponentProps) {
                             onChange={handleUserInstructions}
                         />
                         <Button
+                            type="submit"
                             className="ai-chat--send-button"
-                            onClick={handleSendChatMessages(userInstructions, selectedArticles)}
+                            onClick={handleSendChatMessages(userInstructions, selectedArticles, true)}
                             disabled={isLoading}
                         >
                             Send
                         </Button>
-                    </div>
+                    </form>
                 </>
             ) : null}
         </div>
