@@ -1,8 +1,5 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export type OpenAiChatMessage = {
     role: 'user' | 'assistant';
@@ -14,7 +11,7 @@ const fetchData = (
     setMessages: React.Dispatch<React.SetStateAction<OpenAiChatMessage[]>>
 ) => async () => {
     const res = await fetch(
-        `${process.env.AI_ASST_SERVER_URL}`,
+        'https://ai-assistance-server.deno.dev/api/v1/ai-assistance',
         { 
             method: 'POST', 
             body: JSON.stringify({ messages }),

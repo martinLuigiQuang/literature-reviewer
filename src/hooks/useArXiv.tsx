@@ -1,7 +1,4 @@
 import { useQuery } from 'react-query';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export type SearchParams = {
     searchQuery: string;
@@ -24,7 +21,7 @@ const fetchData = (searchParams: SearchParams) => async () => {
         searchQuery, start = '0', maxResults = '10',
     } = searchParams;
     const queryParams = `search_query=${searchQuery}&start=${start}&max_results=${maxResults}`;
-    const res = await fetch(`${process.env.ARXIV_SERVER_URL}?${queryParams}`);
+    const res = await fetch(`http://martinluigiquang.pythonanywhere.com/api/v1/search?${queryParams}`);
     return await res.json();
 };
 
