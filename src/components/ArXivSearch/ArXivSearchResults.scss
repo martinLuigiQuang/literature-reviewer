@@ -1,0 +1,50 @@
+.search-results {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+
+    &--loading-spinner {
+        margin: 32px auto;
+    }
+
+    &--abstracts-container {
+        width: 1280px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 48px;
+        align-content: flex-start;
+    }
+
+    &--abstract {
+        padding: 8px 0;
+        width: calc((100% - 96px) / 3);
+        position: relative;
+    }
+
+    &--abstract-title {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        a {
+            font-size: 24px;
+        }
+    }
+
+    &--authors {
+        font-style: italic;
+    }
+
+    &--abstract-text {
+        max-height: 200px;
+        overflow: scroll;
+    }
+
+    &--abstract-select {
+        position: absolute;
+        bottom: 24px;
+        right: -32px;
+        width: 24px;
+        height: 24px;
+    }
+}

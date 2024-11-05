@@ -1,0 +1,111 @@
+.ai-chat {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    bottom: 50px;
+    right: 50px;
+    width: 500px;
+    background-color: #eef4e9;
+    border-radius: 5px;
+    border: 1px solid #1f5724;
+    
+    &--hidden {
+        height: 64px;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        bottom: 50px;
+        right: 50px;
+        background-color: #ddc1fd;
+        border-radius: 5px;
+    }
+
+    &--messages {
+        padding: 16px;
+    }
+
+    &--messages-background {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        overflow-y: scroll;
+        border-radius: 5px;
+    }
+
+    &--user {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+        max-width: 80%;
+        gap: 8px;
+        background-color: rgb(196, 255, 239);
+        border-radius: 5px;
+        margin: 16px;
+        padding: 16px
+    }
+
+    &--assistant,
+    &--assistant-working {
+        max-width: 80%;
+        text-align: left;
+        justify-items: flex-end;
+        background-color: #051728;
+        border-radius: 5px;
+        margin: 16px;
+        padding: 16px;
+        color: white;
+    }
+
+    &--assistant-working {
+        background-color: #b6b1b1;
+        font-style: italic;
+    }
+
+    &--actions {
+        display: flex;
+        gap: 8px;
+        padding: 0 16px;
+    }
+
+    &--inputs-control {
+        display: flex;
+        gap: 8px;
+        padding: 16px;
+        justify-content: flex-end;
+    }
+
+    &--text-input {
+        flex-grow: 1;
+        background-color: white;
+    }
+
+    &--send-button.MuiButtonBase-root {
+        background-color: #ddc1fd;
+        height: 56px;
+        width: 100px;
+        color: black;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 900;
+    }
+
+    &--action-button.MuiButtonBase-root {
+        background-color: white;
+        height: 32px;
+        color: black;
+        text-transform: capitalize;
+        font-size: 16px;
+        flex-grow: 1;
+    }
+
+    &--close-button.MuiButtonBase-root,
+    &--close-button.MuiButtonBase-root:hover {
+        margin-top: 16px;
+        height: 32px;
+        padding: 0;
+        background-color: transparent;
+        align-self: flex-end;
+        color: black;
+    }
+}

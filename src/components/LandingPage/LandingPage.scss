@@ -1,0 +1,31 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background-color: white;
+
+    &--header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--title,
+    &--acknowledgement-text {
+        width: 1280px;
+        text-align: left;
+        margin: 0 auto;
+    }
+
+    &--title {
+        padding: 24px;
+    }
+
+    &--acknowledgement-text {
+        padding: 8px 24px;
+    }
+
+    &--acknowledgement {
+        background-color: #e9f4ea;
+    }
+}

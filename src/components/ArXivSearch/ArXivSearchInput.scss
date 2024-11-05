@@ -1,0 +1,39 @@
+.search-inputs {
+    padding: 24px 0;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #616161;
+    border-bottom: 1px solid #616161;
+    background-color: #051728f0;
+    background-image: url("../../assets/equation-background.png");
+    background-size: cover;
+    margin-bottom: 48px;
+
+    &--form {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        color: white;
+    }
+
+    &--search-term {
+        width: 320px;
+    }
+
+    &--search-term,
+    &--max-results {
+        margin-right: 16px;
+        background-color: white;
+    }
+
+    &--search-button.MuiButtonBase-root {
+        background-color: #ddc1fd;
+        height: 56px;
+        width: 100px;
+        color: black;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 900;
+    }
+}
