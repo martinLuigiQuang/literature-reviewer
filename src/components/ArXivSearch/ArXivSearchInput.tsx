@@ -11,11 +11,13 @@ type ComponentProps = {
     updateSearchParams: React.Dispatch<React.SetStateAction<SearchParams>>;
     enableSearch: React.Dispatch<React.SetStateAction<boolean>>;
     setSelectedArticles: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function ArXivSearchInput(props: ComponentProps) {
     const { 
-        searchParams, isSearchEnabled, updateSearchParams, enableSearch, setSelectedArticles,
+        searchParams, isSearchEnabled, updateSearchParams, 
+        enableSearch, setSelectedArticles, setLoading,
     } = props;
     const { searchQuery, maxResults } = searchParams;
 
@@ -31,6 +33,7 @@ export default function ArXivSearchInput(props: ComponentProps) {
 
     const handleEnableSearch = useCallback(
         () => { 
+            setLoading(true);
             enableSearch(true); 
             setSelectedArticles({});
         }, 
@@ -45,7 +48,7 @@ export default function ArXivSearchInput(props: ComponentProps) {
                     id="search-term" 
                     className="search-inputs--search-term"
                     type="text"
-                    value={searchQuery ?? ''} 
+                    value={searchQuery ?? ''}
                     onChange={handleSearchParamsUpdate('searchQuery')} 
                 />
                 <label htmlFor="max-results">Max results:</label>

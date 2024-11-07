@@ -23,8 +23,9 @@ export default function AiAssistantContainer(props: ComponentProps) {
     const [messages, setMessages] = useState<OpenAiChatMessage[]>([]);
     const [isAiRespEnabled, enableAiResp] = useState(false);
     const [isChatModalOpen, setChatModalOpen] = useState(false);
+    const [isLoading, setLoading] = useState(false);
     const messagesContainerRef = useRef<HTMLDivElement | null>(null);
-    const { isLoading } = useOpenAi(messages, setMessages, isAiRespEnabled);
+    useOpenAi(messages, setMessages, setLoading, isAiRespEnabled);
 
     const handleUserInstructions = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +43,7 @@ export default function AiAssistantContainer(props: ComponentProps) {
                     content: getInstructions(instructions, selectedArticles),
                 },
             ]));
+            setLoading(true);
             setChatModalOpen(true);
             enableAiResp(true);
             if (eraseInput) {

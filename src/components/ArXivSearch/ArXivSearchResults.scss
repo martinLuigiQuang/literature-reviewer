@@ -12,12 +12,12 @@
         display: flex;
         flex-wrap: wrap;
         gap: 48px;
-        align-content: flex-start;
+        justify-content: center;
     }
 
     &--abstract {
-        padding: 8px 0;
         width: calc((100% - 96px) / 3);
+        min-width: 300px;
         position: relative;
     }
 
@@ -37,7 +37,7 @@
 
     &--abstract-text {
         max-height: 200px;
-        overflow: scroll;
+        overflow-y: auto;
     }
 
     &--abstract-select {

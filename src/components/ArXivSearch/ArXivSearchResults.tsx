@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import { ResearchAbstract, SearchParams, useArXiv } from '../../hooks/useArXiv';
 import AiAssistantContainer from '../AiAssitant/AiAssistantContainer';
@@ -8,15 +8,18 @@ type ComponentProps = {
     searchParams: SearchParams;
     selectedArticles: Record<string, boolean>;
     isSearchEnabled: boolean;
+    isLoading: boolean;
     enableSearch: React.Dispatch<React.SetStateAction<boolean>>;
     setSelectedArticles: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function ArXivSearchResults(props: ComponentProps) {
     const { 
-        searchParams, selectedArticles, isSearchEnabled, enableSearch, setSelectedArticles, 
+        searchParams, selectedArticles, isSearchEnabled, isLoading,
+        enableSearch, setSelectedArticles, setLoading,
     } = props;
-    const { data, isLoading } = useArXiv(searchParams, isSearchEnabled);
+    const { data } = useArXiv(searchParams, isSearchEnabled, setLoading);
 
     useEffect(() => { enableSearch((prev) => isSearchEnabled ? false : prev); }, [isSearchEnabled]);
 

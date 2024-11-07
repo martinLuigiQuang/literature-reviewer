@@ -8,7 +8,8 @@ export type OpenAiChatMessage = {
 
 const fetchData = (
     messages: OpenAiChatMessage[],
-    setMessages: React.Dispatch<React.SetStateAction<OpenAiChatMessage[]>>
+    setMessages: React.Dispatch<React.SetStateAction<OpenAiChatMessage[]>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
 ) => async () => {
     const res = await fetch(
         'https://ai-assistance-server.deno.dev/api/v1/ai-assistance',
@@ -21,6 +22,7 @@ const fetchData = (
         },
     );
     const { message } = await res.json() ?? {};
+    setLoading(false);
     setMessages((prev) => ([
         ...prev,
         {
@@ -32,8 +34,9 @@ const fetchData = (
 
 export const useOpenAi = (
     messages: OpenAiChatMessage[],
-    setMessages: React.Dispatch<React.SetStateAction<OpenAiChatMessage[]>>, 
+    setMessages: React.Dispatch<React.SetStateAction<OpenAiChatMessage[]>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>, 
     enabled: boolean,
 ) => (
-    useQuery<void>({ queryKey: 'openAiResp', queryFn: fetchData(messages, setMessages), enabled })
+    useQuery<void>({ queryKey: 'openAiResp', queryFn: fetchData(messages, setMessages, setLoading), enabled })
 );
